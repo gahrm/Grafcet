@@ -1,0 +1,48 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{ABDC50C3-133C-4D5A-8716-8E510702EEC4}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="projet_console.cbproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="dessin.cbproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="projet_console">
+			<MSBuild Projects="projet_console.cbproj"/>
+		</Target>
+		<Target Name="projet_console:Clean">
+			<MSBuild Projects="projet_console.cbproj" Targets="Clean"/>
+		</Target>
+		<Target Name="projet_console:Make">
+			<MSBuild Projects="projet_console.cbproj" Targets="Make"/>
+		</Target>
+		<Target Name="dessin">
+			<MSBuild Projects="dessin.cbproj"/>
+		</Target>
+		<Target Name="dessin:Clean">
+			<MSBuild Projects="dessin.cbproj" Targets="Clean"/>
+		</Target>
+		<Target Name="dessin:Make">
+			<MSBuild Projects="dessin.cbproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="projet_console;dessin"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="projet_console:Clean;dessin:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="projet_console:Make;dessin:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>
